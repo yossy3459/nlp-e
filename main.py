@@ -1,9 +1,16 @@
 import urllib.request, urllib.error
+import re
 import json
-import pathlib as Path
+import glob
 import rating
 import file_writer
 import summarizer
+
+def numericalSort(value):
+    numbers = re.compile(r'(\d+)')
+    parts = numbers.split(value)
+    parts[1::2] = map(int, parts[1::2])
+    return parts
 
 if __name__ == '__main__':
     """ 
@@ -35,9 +42,9 @@ if __name__ == '__main__':
     コーパスファイルオープン
     """
     document_list = []
-    dir_path = Path.Path('corpus')
-    files_path = dir_path.glob("*.txt")
+    files_path = sorted(glob.glob("corpus/Tsukiya*.txt"), key=numericalSort)
     for path in files_path:
+        print(path)
         with open(path, "r", encoding=in_encode) as rfp:
             contents = rfp.read().replace('\n', '')
             document_list.append(contents)
