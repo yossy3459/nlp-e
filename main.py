@@ -7,6 +7,10 @@ import file_writer
 import summarizer
 
 def numericalSort(value):
+    """
+    番号順にソート.
+    コーパスファイル読み込みに使用
+    """
     numbers = re.compile(r'(\d+)')
     parts = numbers.split(value)
     parts[1::2] = map(int, parts[1::2])
