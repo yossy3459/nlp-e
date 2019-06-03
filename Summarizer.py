@@ -13,7 +13,7 @@ def summarizer(document_list: str, high_rank_all: dict):
     summarize = []
     for document, high_rank in zip(document_list, high_rank_all):
         summarize_text = list()
-        document = re.split("[ 。・\?\!？！■]", document)
+        document = re.split("[ 。・\?\!？！■+.↓━─☆~＝～*]", document)
         for sentence in document:
             for hr in list(high_rank.keys()):
                 if hr in sentence:
